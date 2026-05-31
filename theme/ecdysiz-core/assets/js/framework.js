@@ -1,3 +1,4 @@
+/* eslint-env browser */
 /**
  * Ecdysiz Framework — shared frontend JS.
  *

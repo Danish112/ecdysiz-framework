@@ -1,8 +1,8 @@
 {
   "root": true,
   "env": {
-    "node": true,
     "browser": true,
+    "node": true,
     "es2022": true
   },
   "parserOptions": {
@@ -18,7 +18,7 @@
   "rules": {
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "no-undef": "error",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-console": ["warn", { "allow": ["warn", "error", "log"] }],
     "semi": ["error", "always"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "indent": ["error", 4, { "SwitchCase": 1 }],

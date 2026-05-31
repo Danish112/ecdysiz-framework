@@ -1,7 +1,9 @@
 <?php
 /**
- * Front Page template.
- * Step 8 finalizes. Elementor-built content area.
+ * Front page template.
+ *
+ * Loads Elementor-built content if a static front page is set,
+ * otherwise falls back to the home/blog index.
  *
  * @package Ecdysiz_Core
  */
@@ -9,15 +11,15 @@
 get_header();
 ?>
 
-<main id="ecz-main" role="main">
+<main id="ecdysiz-main" class="ecdysiz-main" role="main">
+
 	<?php
-	if ( have_posts() ) :
-		while ( have_posts() ) :
-			the_post();
-			the_content();
-		endwhile;
-	endif;
+	while ( have_posts() ) :
+		the_post();
+		the_content();
+	endwhile;
 	?>
+
 </main>
 
 <?php

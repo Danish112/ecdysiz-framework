@@ -1,14 +1,41 @@
+/* eslint-disable no-undef */
 /**
- * Ecdysiz dark-mode toggle.
+ * Ecdysiz dark-mode toggle button handler.
  *
- * Populated in Step 8 alongside the inline FOUC hydration script
- * that lives in header.php.
- *
- * Status: Scaffold placeholder.
+ * The inline FOUC script in header.php sets the initial theme.
+ * This script wires up the toggle button(s) to switch + persist.
  */
 ( function () {
     'use strict';
 
-    // Step 8: button event handler that toggles [data-theme]
-    // and persists to localStorage.
+    function getCurrentTheme() {
+        return document.documentElement.getAttribute( 'data-theme' ) || 'light';
+    }
+
+    function setTheme( theme ) {
+        document.documentElement.setAttribute( 'data-theme', theme );
+        try {
+            localStorage.setItem( 'ecdysiz-theme', theme );
+        } catch ( e ) {
+            // localStorage unavailable — theme still applies for this session.
+        }
+    }
+
+    function toggleTheme() {
+        const current = getCurrentTheme();
+        setTheme( current === 'dark' ? 'light' : 'dark' );
+    }
+
+    function init() {
+        const toggles = document.querySelectorAll( '[data-ecdysiz-theme-toggle]' );
+        for ( let i = 0; i < toggles.length; i++ ) {
+            toggles[ i ].addEventListener( 'click', toggleTheme );
+        }
+    }
+
+    if ( document.readyState === 'loading' ) {
+        document.addEventListener( 'DOMContentLoaded', init );
+    } else {
+        init();
+    }
 }() );
