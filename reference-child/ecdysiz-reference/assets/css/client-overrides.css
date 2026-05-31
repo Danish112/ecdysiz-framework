@@ -1,14 +1,20 @@
 /**
- * Ecdysiz Reference Child — structural overrides only.
+ * Ecdysiz Reference — client-overrides.
  * Layer: @layer client.
  *
- * STRICT: no visual values (colors, sizes, radii). Those live in
- * tokens.override.json. Stylelint enforces this in Step 2.
+ * INTENTIONALLY EMPTY.
  *
- * This file is empty by default. The framework's central promise is
- * that re-skinning happens through tokens, not CSS.
+ * Per Phase 1.5 contract:
+ *   - Visual values flow through tokens.override.json (never this file)
+ *   - This file is reserved for structural/layout exceptions only
+ *   - Stylelint enforces no hardcoded color/size values here
+ *
+ * The reference child re-skins entirely through token overrides.
+ * This file proves the parent's @layer client is wired correctly.
  */
 
 @layer client {
-    /* Structural exceptions only — almost always empty. */
+
+	/* No structural overrides needed for the reference brand. */
+
 }

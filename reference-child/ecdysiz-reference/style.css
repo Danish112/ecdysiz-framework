@@ -1,17 +1,16 @@
 /*
 Theme Name: Ecdysiz Reference
 Template: ecdysiz-core
+Theme URI: https://github.com/Danish112/ecdysiz-framework
 Author: Ecdysiz Framework
-Author URI: https://ecdysiz.test/
-Description: Reference client child theme demonstrating end-to-end re-skin via token override. Not for production client use — use as a template for new client child themes.
+Author URI: https://github.com/Danish112/ecdysiz-framework
+Description: Reference client child theme demonstrating re-skin via tokens.override.json. Earthy brand palette: saddle brown, dark olive, gold. Parent core remains untouched.
 Version: 0.0.1
 Requires at least: 6.4
 Requires PHP: 8.1
-License: GNU General Public License v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPL-2.0-or-later
 Text Domain: ecdysiz-reference
 */
 
-/* All visual values live in tokens.override.json.
-   client-overrides.css (loaded via functions.php) is for structural
-   exceptions only — no visual values. */
+/* All styles flow from tokens.override.json via the per-client build. */
+/* client-overrides.css is intentionally empty — structural exceptions only. */

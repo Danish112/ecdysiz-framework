@@ -1,23 +1,51 @@
 {
-  "$schema-version": "0.1.0",
-  "$compatible-with": "0.1.0",
-  "$description": "Reference brand — distinct from parent default to prove end-to-end re-skin.",
+  "$schema-version": "1.0.0",
+  "$description": "Ecdysiz Reference Child — distinct earthy brand to prove re-skin via tokens.",
+
   "primitives": {
     "color": {
-      "brand-navy": "#0f1f3d",
-      "brand-cream": "#f0e9d6",
-      "brand-rust": "#b85537"
+      "brand-primary":   "#8b4513",
+      "brand-secondary": "#556b2f",
+      "brand-accent":    "#d4a017"
     }
   },
+
   "semantic": {
     "color": {
-      "surface": {
-        "light": "{primitives.color.brand-cream}",
-        "dark": "{primitives.color.brand-navy}"
+      "primary": {
+        "light": "{primitives.color.brand-primary}",
+        "dark":  "{primitives.color.brand-primary}"
       },
+      "primary-hover": {
+        "light": "{primitives.color.brand-primary}",
+        "dark":  "{primitives.color.brand-primary}"
+      },
+      "primary-on": {
+        "light": "{primitives.color.white}",
+        "dark":  "{primitives.color.white}"
+      },
+
+      "secondary": {
+        "light": "{primitives.color.brand-secondary}",
+        "dark":  "{primitives.color.brand-secondary}"
+      },
+      "secondary-on": {
+        "light": "{primitives.color.white}",
+        "dark":  "{primitives.color.white}"
+      },
+
       "accent": {
-        "light": "{primitives.color.brand-rust}",
-        "dark": "{primitives.color.brand-rust}"
+        "light": "{primitives.color.brand-accent}",
+        "dark":  "{primitives.color.brand-accent}"
+      },
+      "accent-on": {
+        "light": "{primitives.color.gray-900}",
+        "dark":  "{primitives.color.gray-900}"
+      },
+
+      "focus-ring": {
+        "light": "{primitives.color.brand-primary}",
+        "dark":  "{primitives.color.brand-accent}"
       }
     }
   }

@@ -6,15 +6,10 @@
  *   - theme/ecdysiz-core/assets/css/generated/tokens.css
  *   - dist/ecz-variables.json
  *
- * Supports the full token taxonomy:
- *   - color (primitives + semantic light/dark)
- *   - typography (families, weights, leadings, fluid clamp sizes)
- *   - spacing (scale + semantic roles)
- *   - radius (scale + semantic roles)
- *   - shadow (theme-aware)
- *   - border (widths + composed semantic)
- *   - motion (durations + easings + composed semantic)
- *   - z-index, opacity, layout, breakpoint (primitives only)
+ * Per-client mode (--client=<name>):
+ *   - Merges reference-child/<name>/tokens.override.json into base tokens
+ *   - Outputs to reference-child/<name>/assets/css/generated/tokens.css
+ *   - Outputs to dist/<name>-variables.json
  *
  * No dependencies. Node.js >= 20.
  */
@@ -25,19 +20,47 @@ const fs = require('fs');
 const path = require('path');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
+
+// Parse --client=<name> argument for per-client builds.
+const args = process.argv.slice(2);
+const clientArg = args.find(function (a) { return a.startsWith('--client='); });
+const CLIENT = clientArg ? clientArg.split('=')[1] : null;
+
+// Paths depend on whether this is a parent or per-client build.
 const TOKENS_INPUT = path.join(PROJECT_ROOT, 'src', 'tokens', 'tokens.json');
-const CSS_OUTPUT = path.join(PROJECT_ROOT, 'theme', 'ecdysiz-core', 'assets', 'css', 'generated', 'tokens.css');
-const JSON_OUTPUT = path.join(PROJECT_ROOT, 'dist', 'ecz-variables.json');
+
+const CLIENT_OVERRIDE_INPUT = CLIENT
+    ? path.join(PROJECT_ROOT, 'reference-child', CLIENT, 'tokens.override.json')
+    : null;
+
+const CSS_OUTPUT = CLIENT
+    ? path.join(PROJECT_ROOT, 'reference-child', CLIENT, 'assets', 'css', 'generated', 'tokens.css')
+    : path.join(PROJECT_ROOT, 'theme', 'ecdysiz-core', 'assets', 'css', 'generated', 'tokens.css');
+
+const JSON_OUTPUT = CLIENT
+    ? path.join(PROJECT_ROOT, 'dist', CLIENT + '-variables.json')
+    : path.join(PROJECT_ROOT, 'dist', 'ecz-variables.json');
 
 // ----------------------------------------------------------------------------
 // Helpers
 // ----------------------------------------------------------------------------
 
+function deepMerge(base, override) {
+    const result = JSON.parse(JSON.stringify(base));
+    for (const key of Object.keys(override)) {
+        if (typeof override[key] === 'object' && override[key] !== null && !Array.isArray(override[key])) {
+            result[key] = result[key] ? deepMerge(result[key], override[key]) : override[key];
+        } else {
+            result[key] = override[key];
+        }
+    }
+    return result;
+}
+
 function resolveReference(value, tokens) {
     if (typeof value !== 'string') {
         return value;
     }
-    // Resolve any {primitives.X.Y} references inside a value (may appear multiple times).
     return value.replace(/\{([^}]+)\}/g, function (match, refPath) {
         const segments = refPath.split('.');
         let current = tokens;
@@ -55,8 +78,6 @@ function resolveReference(value, tokens) {
 }
 
 function refToCssVar(value, prefix) {
-    // Convert a token reference {primitives.X.Y} → var(--ecdysiz-prefix-name).
-    // Used for emitting var() chains in CSS that preserve dark-mode remapping.
     if (typeof value !== 'string') {
         return value;
     }
@@ -78,9 +99,6 @@ function semanticVar(category, name) {
 }
 
 function clampFromTokens(minToken, maxToken, viewportMin, viewportMax) {
-    // Generate a CSS clamp() expression for fluid type/spacing.
-    // Math: preferred = minRem + (maxRem - minRem) * (100vw - vMin) / (vMax - vMin)
-    // Simplified linear interpolation between viewport bounds.
     const min = parseFloat(minToken);
     const max = parseFloat(maxToken);
     const vMin = parseFloat(viewportMin);
@@ -116,22 +134,19 @@ function emitPrimitives(tokens, lines) {
         for (const name of sortedKeys(entries)) {
             const value = entries[name];
 
-            // Emit raw primitives directly.
             if (category === 'type-size') {
-                continue; // type-size primitives are consumed by clamp generator, not emitted alone
+                continue;
             }
 
             lines.push(`    ${primitiveVar(name)}: ${value};`);
         }
     }
 
-    // Fluid typography roles — generated as clamp() from type-size primitives.
     if (tokens.primitives['type-size'] && tokens.primitives.typography) {
         const vMin = tokens.primitives.typography['viewport-min'];
         const vMax = tokens.primitives.typography['viewport-max'];
         const sizes = tokens.primitives['type-size'];
 
-        // Find role pairs (e.g. h1-min + h1-max → --ecdysiz-type-h1).
         const roles = new Set();
         for (const key of Object.keys(sizes)) {
             const match = key.match(/^(.+)-(min|max)$/);
@@ -183,13 +198,10 @@ function emitSemanticForTheme(tokens, themeKey, selector, lines) {
                 continue;
             }
 
-            // For theme-aware tokens, only emit non-theme-aware ones under the light selector
-            // (to avoid duplication), and emit theme-aware ones under both selectors.
             if (!isThemeAware && themeKey === 'dark') {
                 continue;
             }
 
-            // Emit as var() chain to preserve cascade-based theme switching.
             const cssValue = refToCssVar(rawValue, category);
             lines.push(`    ${semanticVar(category, name)}: ${cssValue};`);
         }
@@ -210,6 +222,9 @@ function generateCss(tokens) {
     lines.push(' * Ecdysiz Tokens — GENERATED FILE');
     lines.push(' * Do not edit directly. Source: src/tokens/tokens.json');
     lines.push(` * Schema version: ${tokens['$schema-version'] || 'unknown'}`);
+    if (CLIENT) {
+        lines.push(` * Client build: ${CLIENT}`);
+    }
     lines.push(' */');
     lines.push('');
     lines.push('@layer reset, framework, components, elementor, client;');
@@ -253,6 +268,7 @@ function generateJson(tokens) {
         version: '4.1',
         type: 'variables-and-classes',
         schemaVersion: tokens['$schema-version'] || '0.0.0',
+        client: CLIENT || 'parent',
         variables: variables,
         classes: {},
     };
@@ -278,6 +294,22 @@ function main() {
         process.exit(1);
     }
 
+    // If client build, merge override into base tokens.
+    if (CLIENT) {
+        if (!fs.existsSync(CLIENT_OVERRIDE_INPUT)) {
+            console.error(`ERROR: client override not found at ${CLIENT_OVERRIDE_INPUT}`);
+            process.exit(1);
+        }
+        let override;
+        try {
+            override = JSON.parse(fs.readFileSync(CLIENT_OVERRIDE_INPUT, 'utf8'));
+        } catch (err) {
+            console.error(`ERROR: failed to parse override — ${err.message}`);
+            process.exit(1);
+        }
+        tokens = deepMerge(tokens, override);
+    }
+
     fs.mkdirSync(path.dirname(CSS_OUTPUT), { recursive: true });
     fs.mkdirSync(path.dirname(JSON_OUTPUT), { recursive: true });
 
@@ -295,7 +327,11 @@ function main() {
 
     console.log('✓ tokens.css           →', path.relative(PROJECT_ROOT, CSS_OUTPUT));
     console.log('✓ ecz-variables.json   →', path.relative(PROJECT_ROOT, JSON_OUTPUT));
-    console.log('Build complete.');
+    if (CLIENT) {
+        console.log(`Build complete (client: ${CLIENT}).`);
+    } else {
+        console.log('Build complete.');
+    }
 }
 
 main();
