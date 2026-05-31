@@ -1,17 +1,127 @@
 {
   "version": "4.1",
   "type": "variables-and-classes",
-  "schemaVersion": "0.1.0",
+  "schemaVersion": "1.0.0",
   "variables": {
     "ecz-color-accent": {
       "type": "color",
       "label": "ECZ Accent",
-      "value": "#e63946"
+      "value": "#f59e0b"
+    },
+    "ecz-color-accent-on": {
+      "type": "color",
+      "label": "ECZ Accent-on",
+      "value": "#18181b"
+    },
+    "ecz-color-background": {
+      "type": "color",
+      "label": "ECZ Background",
+      "value": "#ffffff"
+    },
+    "ecz-color-border": {
+      "type": "color",
+      "label": "ECZ Border",
+      "value": "#e4e4e7"
+    },
+    "ecz-color-border-muted": {
+      "type": "color",
+      "label": "ECZ Border-muted",
+      "value": "#f4f4f5"
+    },
+    "ecz-color-error-surface": {
+      "type": "color",
+      "label": "ECZ Error-surface",
+      "value": "#fee2e2"
+    },
+    "ecz-color-error-text": {
+      "type": "color",
+      "label": "ECZ Error-text",
+      "value": "#991b1b"
+    },
+    "ecz-color-focus-ring": {
+      "type": "color",
+      "label": "ECZ Focus-ring",
+      "value": "#2563eb"
+    },
+    "ecz-color-info-surface": {
+      "type": "color",
+      "label": "ECZ Info-surface",
+      "value": "#dbeafe"
+    },
+    "ecz-color-info-text": {
+      "type": "color",
+      "label": "ECZ Info-text",
+      "value": "#1e3a8a"
+    },
+    "ecz-color-primary": {
+      "type": "color",
+      "label": "ECZ Primary",
+      "value": "#2563eb"
+    },
+    "ecz-color-primary-hover": {
+      "type": "color",
+      "label": "ECZ Primary-hover",
+      "value": "#2563eb"
+    },
+    "ecz-color-primary-on": {
+      "type": "color",
+      "label": "ECZ Primary-on",
+      "value": "#ffffff"
+    },
+    "ecz-color-secondary": {
+      "type": "color",
+      "label": "ECZ Secondary",
+      "value": "#7c3aed"
+    },
+    "ecz-color-secondary-on": {
+      "type": "color",
+      "label": "ECZ Secondary-on",
+      "value": "#ffffff"
+    },
+    "ecz-color-success-surface": {
+      "type": "color",
+      "label": "ECZ Success-surface",
+      "value": "#d1fae5"
+    },
+    "ecz-color-success-text": {
+      "type": "color",
+      "label": "ECZ Success-text",
+      "value": "#065f46"
     },
     "ecz-color-surface": {
       "type": "color",
       "label": "ECZ Surface",
       "value": "#ffffff"
+    },
+    "ecz-color-surface-raised": {
+      "type": "color",
+      "label": "ECZ Surface-raised",
+      "value": "#fafafa"
+    },
+    "ecz-color-text": {
+      "type": "color",
+      "label": "ECZ Text",
+      "value": "#18181b"
+    },
+    "ecz-color-text-inverse": {
+      "type": "color",
+      "label": "ECZ Text-inverse",
+      "value": "#ffffff"
+    },
+    "ecz-color-text-muted": {
+      "type": "color",
+      "label": "ECZ Text-muted",
+      "value": "#52525b"
+    },
+    "ecz-color-warning-surface": {
+      "type": "color",
+      "label": "ECZ Warning-surface",
+      "value": "#fef3c7"
+    },
+    "ecz-color-warning-text": {
+      "type": "color",
+      "label": "ECZ Warning-text",
+      "value": "#92400e"
     }
   },
   "classes": {}
