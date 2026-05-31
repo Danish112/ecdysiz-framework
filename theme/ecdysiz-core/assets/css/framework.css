@@ -2,12 +2,110 @@
  * Ecdysiz Framework — base styles.
  * Layer: @layer framework.
  *
- * Populated in Step 7 (cascade order declaration + base resets)
- * and Step 9 (focus-visible baseline).
+ * Consumes tokens from generated/tokens.css.
+ * No hardcoded design values — semantic tokens only.
  */
 
 @layer reset, framework, components, elementor, client;
 
 @layer framework {
-    /* Step 7-9: base styles populated here. */
+
+	/* Reset-lite — sensible baselines without resetting too much */
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		font-family: var(--ecdysiz-family-sans);
+		font-size: var(--ecdysiz-type-body);
+		font-weight: var(--ecdysiz-weight-regular);
+		line-height: var(--ecdysiz-leading-normal);
+		color: var(--ecdysiz-color-text);
+		background-color: var(--ecdysiz-color-background);
+	}
+
+	/* Heading defaults */
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		font-family: var(--ecdysiz-family-heading);
+		font-weight: var(--ecdysiz-weight-bold);
+		line-height: var(--ecdysiz-leading-tight);
+		color: var(--ecdysiz-color-text);
+	}
+
+	h1 { font-size: var(--ecdysiz-type-h1); }
+	h2 { font-size: var(--ecdysiz-type-h2); }
+	h3 { font-size: var(--ecdysiz-type-h3); }
+	h4 { font-size: var(--ecdysiz-type-h4); }
+	h5 { font-size: var(--ecdysiz-type-h5); }
+	h6 { font-size: var(--ecdysiz-type-h6); }
+
+	p {
+		margin: 0;
+	}
+
+	/* Links */
+
+	a {
+		color: var(--ecdysiz-color-primary);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		transition: color var(--ecdysiz-motion-hover);
+	}
+
+	a:hover {
+		color: var(--ecdysiz-color-primary-hover);
+	}
+
+	/* Focus-visible baseline — accessibility requirement */
+
+	:focus-visible {
+		outline: 2px solid var(--ecdysiz-color-focus-ring);
+		outline-offset: 2px;
+	}
+
+	/* Skip link — accessibility, lives at top of <body> */
+
+	.ecdysiz-skip-link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: var(--ecdysiz-stack-sm) var(--ecdysiz-inline-md);
+		background-color: var(--ecdysiz-color-primary);
+		color: var(--ecdysiz-color-primary-on);
+		text-decoration: none;
+		font-weight: var(--ecdysiz-weight-semibold);
+		z-index: var(--ecdysiz-toast);
+		transform: translateY(-100%);
+		transition: transform var(--ecdysiz-motion-hover);
+	}
+
+	.ecdysiz-skip-link:focus {
+		transform: translateY(0);
+	}
+
+	/* Main landmark */
+
+	main {
+		display: block;
+	}
+
+	/* Reduced motion preference */
+
+	@media (prefers-reduced-motion: reduce) {
+
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
 }
