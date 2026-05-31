@@ -5,7 +5,7 @@
  * Single responsibility: enqueue stylesheets and scripts in cascade-correct order:
  *   tokens.css -> framework.css -> components.css -> client.css
  *
- * Populated in Step 7.
+ * Cascade layer wrapping for Elementor stylesheets lives in inc/cascade.php (Step 7).
  *
  * @package Ecdysiz_Core
  */
@@ -14,5 +14,69 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Step 7: wp_enqueue_style for tokens, framework, components, client
-// with proper dependency chain and ECZ_VERSION cache-busting.
+/**
+ * Enqueue framework stylesheets in cascade-correct order.
+ *
+ * Order matters for the @layer cascade:
+ *   tokens (CSS variables) -> framework -> components -> client
+ *
+ * @return void
+ */
+function ecdysiz_enqueue_styles() {
+	$css_uri = ECDYSIZ_URI . '/assets/css';
+
+	wp_enqueue_style(
+		'ecdysiz-tokens',
+		$css_uri . '/generated/tokens.css',
+		array(),
+		ECDYSIZ_VERSION
+	);
+
+	wp_enqueue_style(
+		'ecdysiz-framework',
+		$css_uri . '/framework.css',
+		array( 'ecdysiz-tokens' ),
+		ECDYSIZ_VERSION
+	);
+
+	wp_enqueue_style(
+		'ecdysiz-components',
+		$css_uri . '/components.css',
+		array( 'ecdysiz-framework' ),
+		ECDYSIZ_VERSION
+	);
+
+	wp_enqueue_style(
+		'ecdysiz-client',
+		$css_uri . '/client.css',
+		array( 'ecdysiz-components' ),
+		ECDYSIZ_VERSION
+	);
+}
+add_action( 'wp_enqueue_scripts', 'ecdysiz_enqueue_styles' );
+
+/**
+ * Enqueue framework JavaScript.
+ *
+ * @return void
+ */
+function ecdysiz_enqueue_scripts() {
+	$js_uri = ECDYSIZ_URI . '/assets/js';
+
+	wp_enqueue_script(
+		'ecdysiz-theme-toggle',
+		$js_uri . '/theme-toggle.js',
+		array(),
+		ECDYSIZ_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'ecdysiz-framework',
+		$js_uri . '/framework.js',
+		array(),
+		ECDYSIZ_VERSION,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'ecdysiz_enqueue_scripts' );
