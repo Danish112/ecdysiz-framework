@@ -1,0 +1,24 @@
+{
+  "$schema-version": "0.1.0",
+  "$compatible-with": "0.1.0",
+  "$description": "Reference brand — distinct from parent default to prove end-to-end re-skin.",
+  "primitives": {
+    "color": {
+      "brand-navy": "#0f1f3d",
+      "brand-cream": "#f0e9d6",
+      "brand-rust": "#b85537"
+    }
+  },
+  "semantic": {
+    "color": {
+      "surface": {
+        "light": "{primitives.color.brand-cream}",
+        "dark": "{primitives.color.brand-navy}"
+      },
+      "accent": {
+        "light": "{primitives.color.brand-rust}",
+        "dark": "{primitives.color.brand-rust}"
+      }
+    }
+  }
+}

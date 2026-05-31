@@ -1,0 +1,13 @@
+/**
+ * Ecdysiz Framework — base styles.
+ * Layer: @layer framework.
+ *
+ * Populated in Step 7 (cascade order declaration + base resets)
+ * and Step 9 (focus-visible baseline).
+ */
+
+@layer reset, framework, components, elementor, client;
+
+@layer framework {
+    /* Step 7-9: base styles populated here. */
+}

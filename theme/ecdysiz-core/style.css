@@ -1,0 +1,18 @@
+/*
+Theme Name: Ecdysiz Core
+Theme URI: https://ecdysiz.test/
+Author: Ecdysiz Framework
+Author URI: https://ecdysiz.test/
+Description: A reusable WordPress + Elementor Pro framework for agency client projects. Designed to be extended via per-client child themes.
+Version: 0.0.1
+Requires at least: 6.4
+Tested up to: 6.5
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ecdysiz-core
+Tags: elementor, framework, agency
+*/
+
+/* Real styles live in assets/css/framework.css, assets/css/components.css,
+   and assets/css/generated/tokens.css, loaded via inc/enqueue.php. */

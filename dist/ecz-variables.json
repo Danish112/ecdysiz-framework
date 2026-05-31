@@ -1,0 +1,18 @@
+{
+  "version": "4.1",
+  "type": "variables-and-classes",
+  "schemaVersion": "0.1.0",
+  "variables": {
+    "ecz-color-accent": {
+      "type": "color",
+      "label": "ECZ Accent",
+      "value": "#e63946"
+    },
+    "ecz-color-surface": {
+      "type": "color",
+      "label": "ECZ Surface",
+      "value": "#ffffff"
+    }
+  },
+  "classes": {}
+}

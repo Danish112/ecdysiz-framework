@@ -1,0 +1,34 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "custom-property-pattern": [
+      "^ecz-[a-z0-9]+(-[a-z0-9]+)*$",
+      {
+        "message": "CSS custom properties must use the ecz- prefix (e.g. --ecz-color-surface)."
+      }
+    ],
+    "selector-class-pattern": [
+      "^ecz-[a-z0-9]+(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+      {
+        "message": "Class names must use the ecz- prefix (e.g. .ecz-btn, .ecz-card__media, .ecz-btn--primary)."
+      }
+    ],
+    "declaration-no-important": [
+      true,
+      {
+        "message": "!important is banned. Use @layer client to override cleanly."
+      }
+    ],
+    "no-descending-specificity": null,
+    "comment-empty-line-before": null,
+    "no-duplicate-selectors": null,
+    "selector-not-notation": "complex",
+    "media-feature-range-notation": "prefix"
+  },
+  "ignoreFiles": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/generated/**",
+    "**/vendor/**"
+  ]
+}

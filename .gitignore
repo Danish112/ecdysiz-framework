@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Build outputs at theme level (mirrored to dist/ at repo level)
+theme/*/assets/css/generated/
+reference-child/*/assets/css/generated/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# WordPress test artifacts
+.phpunit.result.cache
+
+# Composer
+vendor/
+composer.lock

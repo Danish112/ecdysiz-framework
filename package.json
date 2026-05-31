@@ -1,0 +1,20 @@
+{
+  "name": "ecdysiz-framework",
+  "version": "0.0.1",
+  "private": true,
+  "description": "WordPress + Elementor Pro framework — build tooling.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node tooling/build-tokens.js",
+    "build:reference": "node tooling/build-tokens.js --client=ecdysiz-reference",
+    "lint:css": "stylelint \"theme/**/*.css\" \"reference-child/**/*.css\"",
+    "lint:js": "eslint \"tooling/**/*.js\" \"theme/**/*.js\""
+  },
+  "devDependencies": {
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "eslint": "^8.57.0"
+  }
+}

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+          coverage: none
+
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Install PHP dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Lint PHP
+        run: composer run lint:php
+
+      - name: Lint CSS
+        run: npm run lint:css
+
+      - name: Lint JS
+        run: npm run lint:js
+
+      # Reserved gates — activated in later phases.
+      # - name: Build integrity check
+      #   run: node tooling/build-tokens.js && git diff --exit-code dist/
+      # - name: Accessibility (axe-core)
+      #   run: echo "Activated in Phase 4 hardening"
+      # - name: Lighthouse CI
+      #   run: echo "Activated in Phase 4 hardening"

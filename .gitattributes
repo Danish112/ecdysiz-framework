@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+# Generated files
+dist/** linguist-generated=true
+
+# Binary files
+*.png binary
+*.jpg binary
+*.gif binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

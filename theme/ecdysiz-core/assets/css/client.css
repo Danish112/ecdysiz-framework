@@ -1,0 +1,12 @@
+/**
+ * Ecdysiz Client overrides — empty in parent.
+ * Layer: @layer client.
+ *
+ * The parent theme ships an empty client layer file so the layer exists
+ * in the cascade. Children load their own client-overrides.css into this
+ * same layer for structural exceptions only.
+ */
+
+@layer client {
+    /* Empty by design. Children override via @layer client. */
+}

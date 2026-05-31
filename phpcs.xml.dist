@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ruleset name="Ecdysiz">
+    <description>PHP coding standards for Ecdysiz Framework.</description>
+
+    <!-- Files to scan -->
+    <file>theme</file>
+    <file>reference-child</file>
+
+    <!-- Exclude generated/vendor directories -->
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>*/generated/*</exclude-pattern>
+    <exclude-pattern>*/languages/*</exclude-pattern>
+
+    <!-- Arguments -->
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="4"/>
+    <arg value="ps"/>
+
+    <!-- Target PHP and WordPress versions -->
+    <config name="testVersion" value="8.1-"/>
+    <config name="minimum_supported_wp_version" value="6.4"/>
+
+    <!-- WordPress Coding Standards -->
+    <rule ref="WordPress">
+        <!-- We allow short array syntax [] (not array()) -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        <!-- Modern PHP file naming, not WP class-file-name convention -->
+        <exclude name="WordPress.Files.FileName"/>
+    </rule>
+
+    <!-- Security sniffs -->
+    <rule ref="WordPress.Security"/>
+
+    <!-- Enforce ecz_ / Ecdysiz_ / ECZ_ prefixes on all globals -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="ecdysiz"/>
+                <element value="ecdysiz_"/>
+                <element value="Ecdysiz"/>
+                <element value="Ecdysiz_"/>
+                <element value="ECDYSIZ_"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Require text domain on translatable strings -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="ecdysiz-core"/>
+                <element value="ecdysiz-reference"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- PHP version compatibility -->
+    <rule ref="PHPCompatibilityWP"/>
+</ruleset>
