@@ -3,124 +3,124 @@
   "type": "variables-and-classes",
   "schemaVersion": "1.0.0",
   "variables": {
-    "ecz-color-accent": {
+    "ecdysiz-color-accent": {
       "type": "color",
-      "label": "ECZ Accent",
+      "label": "Ecdysiz accent",
       "value": "#f59e0b"
     },
-    "ecz-color-accent-on": {
+    "ecdysiz-color-accent-on": {
       "type": "color",
-      "label": "ECZ Accent-on",
+      "label": "Ecdysiz accent-on",
       "value": "#18181b"
     },
-    "ecz-color-background": {
+    "ecdysiz-color-background": {
       "type": "color",
-      "label": "ECZ Background",
+      "label": "Ecdysiz background",
       "value": "#ffffff"
     },
-    "ecz-color-border": {
+    "ecdysiz-color-border": {
       "type": "color",
-      "label": "ECZ Border",
+      "label": "Ecdysiz border",
       "value": "#e4e4e7"
     },
-    "ecz-color-border-muted": {
+    "ecdysiz-color-border-muted": {
       "type": "color",
-      "label": "ECZ Border-muted",
+      "label": "Ecdysiz border-muted",
       "value": "#f4f4f5"
     },
-    "ecz-color-error-surface": {
+    "ecdysiz-color-error-surface": {
       "type": "color",
-      "label": "ECZ Error-surface",
+      "label": "Ecdysiz error-surface",
       "value": "#fee2e2"
     },
-    "ecz-color-error-text": {
+    "ecdysiz-color-error-text": {
       "type": "color",
-      "label": "ECZ Error-text",
+      "label": "Ecdysiz error-text",
       "value": "#991b1b"
     },
-    "ecz-color-focus-ring": {
+    "ecdysiz-color-focus-ring": {
       "type": "color",
-      "label": "ECZ Focus-ring",
+      "label": "Ecdysiz focus-ring",
       "value": "#2563eb"
     },
-    "ecz-color-info-surface": {
+    "ecdysiz-color-info-surface": {
       "type": "color",
-      "label": "ECZ Info-surface",
+      "label": "Ecdysiz info-surface",
       "value": "#dbeafe"
     },
-    "ecz-color-info-text": {
+    "ecdysiz-color-info-text": {
       "type": "color",
-      "label": "ECZ Info-text",
+      "label": "Ecdysiz info-text",
       "value": "#1e3a8a"
     },
-    "ecz-color-primary": {
+    "ecdysiz-color-primary": {
       "type": "color",
-      "label": "ECZ Primary",
+      "label": "Ecdysiz primary",
       "value": "#2563eb"
     },
-    "ecz-color-primary-hover": {
+    "ecdysiz-color-primary-hover": {
       "type": "color",
-      "label": "ECZ Primary-hover",
+      "label": "Ecdysiz primary-hover",
       "value": "#2563eb"
     },
-    "ecz-color-primary-on": {
+    "ecdysiz-color-primary-on": {
       "type": "color",
-      "label": "ECZ Primary-on",
+      "label": "Ecdysiz primary-on",
       "value": "#ffffff"
     },
-    "ecz-color-secondary": {
+    "ecdysiz-color-secondary": {
       "type": "color",
-      "label": "ECZ Secondary",
+      "label": "Ecdysiz secondary",
       "value": "#7c3aed"
     },
-    "ecz-color-secondary-on": {
+    "ecdysiz-color-secondary-on": {
       "type": "color",
-      "label": "ECZ Secondary-on",
+      "label": "Ecdysiz secondary-on",
       "value": "#ffffff"
     },
-    "ecz-color-success-surface": {
+    "ecdysiz-color-success-surface": {
       "type": "color",
-      "label": "ECZ Success-surface",
+      "label": "Ecdysiz success-surface",
       "value": "#d1fae5"
     },
-    "ecz-color-success-text": {
+    "ecdysiz-color-success-text": {
       "type": "color",
-      "label": "ECZ Success-text",
+      "label": "Ecdysiz success-text",
       "value": "#065f46"
     },
-    "ecz-color-surface": {
+    "ecdysiz-color-surface": {
       "type": "color",
-      "label": "ECZ Surface",
+      "label": "Ecdysiz surface",
       "value": "#ffffff"
     },
-    "ecz-color-surface-raised": {
+    "ecdysiz-color-surface-raised": {
       "type": "color",
-      "label": "ECZ Surface-raised",
+      "label": "Ecdysiz surface-raised",
       "value": "#fafafa"
     },
-    "ecz-color-text": {
+    "ecdysiz-color-text": {
       "type": "color",
-      "label": "ECZ Text",
+      "label": "Ecdysiz text",
       "value": "#18181b"
     },
-    "ecz-color-text-inverse": {
+    "ecdysiz-color-text-inverse": {
       "type": "color",
-      "label": "ECZ Text-inverse",
+      "label": "Ecdysiz text-inverse",
       "value": "#ffffff"
     },
-    "ecz-color-text-muted": {
+    "ecdysiz-color-text-muted": {
       "type": "color",
-      "label": "ECZ Text-muted",
+      "label": "Ecdysiz text-muted",
       "value": "#52525b"
     },
-    "ecz-color-warning-surface": {
+    "ecdysiz-color-warning-surface": {
       "type": "color",
-      "label": "ECZ Warning-surface",
+      "label": "Ecdysiz warning-surface",
       "value": "#fef3c7"
     },
-    "ecz-color-warning-text": {
+    "ecdysiz-color-warning-text": {
       "type": "color",
-      "label": "ECZ Warning-text",
+      "label": "Ecdysiz warning-text",
       "value": "#92400e"
     }
   },
