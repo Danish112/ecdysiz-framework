@@ -1,0 +1,16 @@
+/**
+ * Ecdysiz Sections — marketing section styles.
+ * Layer: @layer components.
+ *
+ * Pre-built sections that compose primitives (button, container, card)
+ * into complete marketing units. Drag-drop into Elementor with the
+ * matching template JSON.
+ *
+ * Each section is fully tokenized and dark-mode aware.
+ */
+
+@layer components {
+
+	/* Sections will be added here one by one in Phase 2 builds. */
+
+}
